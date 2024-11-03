@@ -1,9 +1,20 @@
 import HexEditor from "./component/hexEditor.mjs";
 let editor = new HexEditor();
 
-document.getElementById("test")
-.addEventListener("click", (e) =>
+document.getElementById("uploadButton")
+.addEventListener("click", () =>
 {
-    const data = [255, 23, 1, 77, 69, 42, 8];
-    editor.renderData(data);
+    const fileInput = document.getElementById("fileInput");
+    if(fileInput.files.length > 0)
+    {
+        const fileHandler = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) =>
+        {
+            let intArray = new Uint8Array(event.target.result);
+            editor.renderData(Array.from(intArray));
+        };
+        reader.onerror = () => alert('upload failed');
+        reader.readAsArrayBuffer(fileHandler);
+    }
 });
