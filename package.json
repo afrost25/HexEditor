@@ -1,0 +1,13 @@
+{
+  "name": "hexeditor",
+  "version": "1.0.0",
+  "description": "This is an initial commit",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Server.js",
+    "dev" : "nodemon Server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
