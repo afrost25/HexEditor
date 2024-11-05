@@ -1,4 +1,4 @@
-import HexEditor from "./component/hexEditor.mjs";
+import HexEditor from "./component/hex-editor/hex-editor.mjs";
 let editor = new HexEditor();
 
 document.getElementById("uploadButton")

@@ -45,13 +45,17 @@ class HexEditor
         const editorHeaderRow = document.createElement("tr");
         editorHeader.appendChild(editorHeaderRow);
 
-        const addressHeader = document.createElement("th");
+        const addressHeader = document.createElement("th")
+        addressHeader.id = "address-header";
+        addressHeader.classList.add("address-column");
         addressHeader.innerHTML = "Address";
         editorHeaderRow.appendChild(addressHeader);
 
         for(let addressOffset = 0; addressOffset < this.#offsetSize; addressOffset++)
         {
             const addressOffsetHeader = document.createElement("th");
+            addressOffsetHeader.classList.add("address-offset-header");
+            addressOffsetHeader.classList.add("hex-data-column");
             addressOffsetHeader.innerHTML = addressOffset.toString(16).toUpperCase();
             editorHeaderRow.appendChild(addressOffsetHeader);
         }
@@ -72,9 +76,11 @@ class HexEditor
             const editorBodyRow = document.createElement("tr");
             editorBody.appendChild(editorBodyRow);
 
-            let addressRow = "0x" + (this.#offsetSize * row).toString(16).padStart(8, "0").toUpperCase();
+            let addressRow = (this.#offsetSize * row).toString(16).padStart(8, "0").toUpperCase();
 
             const addressData = document.createElement("td");
+            addressData.classList.add("address-data");
+            addressData.classList.add("address-column");
             addressData.innerHTML = addressRow;
             editorBodyRow.appendChild(addressData);
 
@@ -83,7 +89,12 @@ class HexEditor
                 do
                 {
                     const hexData = document.createElement("td");
+                    hexData.classList.add("hex-data");
+                    hexData.classList.add("hex-data-column");
+                    hexData.contentEditable = "true";
+                    hexData.spellcheck = false;
                     hexData.innerHTML = this.#data[dataIndex].toString(16).padStart(2, "0").toUpperCase();
+
                     editorBodyRow.appendChild(hexData);
                     dataIndex++;
                 }

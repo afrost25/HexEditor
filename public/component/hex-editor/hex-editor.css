@@ -1,0 +1,61 @@
+#hex-editor
+{
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+}
+
+#editor-table
+{
+    font-family: Monospaced;
+    color: #ECF2F8;
+    border: 2px solid blue;
+    background-color: #2C3A47;
+    border-collapse: collapse;
+}
+
+th
+{
+    font-weight: normal;
+}
+
+#editor-header
+{
+
+}
+
+#editor-body
+{
+
+}
+
+#address-header
+{
+
+}
+
+.address-offset-header
+{
+    background-color: #1E272E;
+}
+
+.address-column
+{
+    padding: 10px;
+    background-color: #1E272E;
+}
+
+.hex-data-column
+{
+    padding: 10px;
+}
+
+.address-data
+{
+
+}
+
+.hex-data
+{
+
+}
