@@ -1,19 +1,35 @@
 class HexEditor
 {
     #offsetSize;
-    #data;
+    #hexData;
 
     constructor()
     {
         this.#offsetSize = 16;
-        this.#data = [];
+        this.#hexData = [];
         this.#initialize();
     }
 
     renderData(data)
     {
-        this.#data = data;
+        this.#parseData(data);
         this.#renderBody();
+    }
+
+    #parseData(data)
+    {
+        for(let dataIndex = 0; dataIndex < data.length; dataIndex++)
+        {
+            let rowNum = Math.floor(dataIndex / this.#offsetSize);
+            if(this.#hexData[rowNum] === undefined)
+            {
+                this.#hexData[rowNum] = [];
+            }
+
+
+            let colNum = dataIndex % this.#offsetSize;
+            this.#hexData[rowNum] [colNum] = data[dataIndex].toString(16).padStart(2, '0').toUpperCase();
+        }
     }
 
     #initialize()
@@ -68,10 +84,7 @@ class HexEditor
         //Clear any child nodes during render if any
         editorBody.innerHTML = "";
 
-        let numRows = Math.ceil(this.#data.length / this.#offsetSize);
-        let dataIndex = 0;
-
-        for(let row = 0; row < numRows; row++)
+        for(let row = 0; row < this.#hexData.length; row++)
         {
             const editorBodyRow = document.createElement("tr");
             editorBody.appendChild(editorBodyRow);
@@ -84,21 +97,18 @@ class HexEditor
             addressData.innerHTML = addressRow;
             editorBodyRow.appendChild(addressData);
 
-            if(this.#data.length > 0)
-            {
-                do
-                {
-                    const hexData = document.createElement("td");
-                    hexData.classList.add("hex-data");
-                    hexData.classList.add("hex-data-column");
-                    hexData.contentEditable = "true";
-                    hexData.spellcheck = false;
-                    hexData.innerHTML = this.#data[dataIndex].toString(16).padStart(2, "0").toUpperCase();
+            for(let col = 0; col < this.#offsetSize; col++) {
+                const hexData = document.createElement("td");
+                hexData.classList.add("hex-data");
+                hexData.classList.add("hex-data-column");
+                hexData.contentEditable = "true";
+                hexData.spellcheck = false;
 
-                    editorBodyRow.appendChild(hexData);
-                    dataIndex++;
+                if (this.#hexData[row][col] !== undefined) {
+                    hexData.innerHTML = this.#hexData[row][col];
                 }
-                while(dataIndex % 16 !== 0 && dataIndex < this.#data.length);
+
+                editorBodyRow.appendChild(hexData);
             }
         }
     }

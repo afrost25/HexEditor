@@ -8,10 +8,12 @@
 #editor-table
 {
     font-family: Monospaced;
+    text-align: center;
     color: #ECF2F8;
     border: 2px solid blue;
     background-color: #2C3A47;
     border-collapse: collapse;
+    width: 75%;
 }
 
 th
@@ -21,7 +23,7 @@ th
 
 #editor-header
 {
-
+    background-color: #1E272E;
 }
 
 #editor-body
@@ -36,13 +38,12 @@ th
 
 .address-offset-header
 {
-    background-color: #1E272E;
+
 }
 
 .address-column
 {
     padding: 10px;
-    background-color: #1E272E;
 }
 
 .hex-data-column
